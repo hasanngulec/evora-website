@@ -33,7 +33,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img
-              src="/src/assets/evoraa-son2.png"
+              src="/evoraa-son2.png"
               alt="Evora"
               className="h-12 w-auto"
             />
