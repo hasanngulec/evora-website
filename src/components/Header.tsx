@@ -24,8 +24,8 @@ const Header = () => {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md soft-shadow"
-          : "bg-transparent"
+          ? "bg-black/70 backdrop-blur-md soft-shadow"
+          : "bg-black/50"
       }`}
     >
       <div className="container mx-auto px-6 lg:px-8">
@@ -33,9 +33,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/7276803a-8058-4492-b00a-b09d63581c8d.png" 
+              src="/src/assets/evoraa-son2.png" 
               alt="Evora İnşaat" 
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
           </div>
 
@@ -43,31 +43,31 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-sm font-medium text-evora-charcoal hover:text-evora-gold transition-colors duration-200"
+              className="text-sm font-medium text-white/80 hover:text-evora-gold transition-colors duration-200"
             >
               Anasayfa
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-evora-charcoal hover:text-evora-gold transition-colors duration-200"
+              className="text-sm font-medium text-white/80 hover:text-evora-gold transition-colors duration-200"
             >
               Hakkımızda
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="text-sm font-medium text-evora-charcoal hover:text-evora-gold transition-colors duration-200"
+              className="text-sm font-medium text-white/80 hover:text-evora-gold transition-colors duration-200"
             >
               Projeler
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-sm font-medium text-evora-charcoal hover:text-evora-gold transition-colors duration-200"
+              className="text-sm font-medium text-white/80 hover:text-evora-gold transition-colors duration-200"
             >
               Hizmetler
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-evora-charcoal hover:text-evora-gold transition-colors duration-200"
+              className="text-sm font-medium text-white/80 hover:text-evora-gold transition-colors duration-200"
             >
               İletişim
             </button>

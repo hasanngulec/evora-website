@@ -7,7 +7,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-evora-navy text-white">
+    <footer className="bg-black/70 text-white">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Main Footer */}
         <div className="py-16 grid lg:grid-cols-4 gap-8">
@@ -15,9 +15,9 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img 
-                src="/lovable-uploads/7276803a-8058-4492-b00a-b09d63581c8d.png" 
+                src="/src/assets/evoraa-son2.png" 
                 alt="Evora İnşaat" 
-                className="h-8 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-white/80 mb-6 leading-relaxed max-w-md">
