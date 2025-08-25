@@ -32,12 +32,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center">
-              <div className="w-10 h-10 bg-evora-gold rounded-lg flex items-center justify-center mr-3">
-                <span className="text-evora-navy font-display font-bold text-xl">E</span>
-              </div>
-              <span className="text-white font-display font-bold text-xl">Evora İnşaat</span>
-            </div>
+            <img
+              src="/src/assets/evoraa-son2.png"
+              alt="Evora"
+              className="h-12 w-auto"
+            />
           </div>
 
           {/* Navigation */}
