@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,30 +48,7 @@ const Projects = () => {
       image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Özel Bahçe", "Akıllı Sistem", "Kapalı Havuz"]
     },
-    {
-      id: 4,
-      title: "Sky Tower",
-      category: "Rezidans",
-      description: "Şehrin en yüksek noktasında, 360° manzaralı ultra lüks rezidans projesi.",
-      image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-      features: ["Gökdelende Yaşam", "Concierge Hizmet", "Helipad"]
-    },
-    {
-      id: 5,
-      title: "Marina Complex",
-      category: "Karma Proje",
-      description: "Deniz manzaralı, konut ve ticari alanları birleştiren entegre yaşam projesi.",
-      image: "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-      features: ["Marina Erişimi", "Alışveriş Merkezi", "Restoran"]
-    },
-    {
-      id: 6,
-      title: "Green Valley Homes",
-      category: "Sürdürülebilir Konut",
-      description: "Çevre dostu malzemeler ve enerji verimli teknolojilerle tasarlanmış ekolojik konut projesi.",
-      image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-      features: ["Sıfır Atık", "Güneş Enerjisi", "Yeşil Çatı"]
-    }
+
   ];
 
   return (
@@ -137,7 +116,14 @@ const Projects = () => {
                 </div>
 
                 {/* CTA */}
-                <button className="text-evora-gold font-semibold hover:text-evora-navy transition-colors duration-200 group">
+                <button 
+                  onClick={() => {
+                    // Mevcut scroll pozisyonunu localStorage'a kaydet
+                    localStorage.setItem('projectsScrollPosition', window.scrollY.toString());
+                    navigate(`/project/${project.id}`);
+                  }}
+                  className="text-evora-gold font-semibold hover:text-evora-navy transition-colors duration-200 group"
+                >
                   Detayları İncele
                   <svg className="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

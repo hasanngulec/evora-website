@@ -12,6 +12,8 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { toast } = useToast();
 
@@ -32,22 +34,48 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Proje detay sayfasından gelen proje bilgilerini otomatik yükle
+  useEffect(() => {
+    const selectedProject = localStorage.getItem('selectedProject');
+    const selectedProjectCategory = localStorage.getItem('selectedProjectCategory');
+    const selectedProjectDescription = localStorage.getItem('selectedProjectDescription');
+    
+    if (selectedProject && selectedProjectCategory && selectedProjectDescription) {
+      // Proje bilgilerini form'a otomatik yükle
+      setFormData(prev => ({
+        ...prev,
+        message: `${selectedProject} (${selectedProjectCategory}) projesi hakkında detaylı bilgi almak istiyorum.\n\n${selectedProjectDescription}\n\nProje hakkında danışmanlık almak istiyorum.`
+      }));
+      
+      // localStorage'dan temizle (bir kez kullanıldıktan sonra)
+      localStorage.removeItem('selectedProject');
+      localStorage.removeItem('selectedProjectCategory');
+      localStorage.removeItem('selectedProjectDescription');
+    }
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simulate form submission
-    toast({
-      title: "Mesajınız Alındı!",
-      description: "En kısa sürede sizinle iletişime geçeceğiz.",
-    });
+    // Form gönderildi olarak işaretle
+    setIsFormSubmitted(true);
+    
+    // Önce özeti göster
+    setShowSummary(true);
+    
+    // 3 saniye sonra başarı mesajını göster
+    setTimeout(() => {
+      setShowSummary(false);
+    }, 3000);
+  };
 
-    // Reset form
+  const handleNewForm = () => {
+    // Yeni form için sadece mesaj kısmını temizle, diğer bilgileri koru
     setFormData({
-      name: "",
-      email: "",
-      phone: "",
+      ...formData,
       message: ""
     });
+    setIsFormSubmitted(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -118,6 +146,98 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div className={`${isVisible ? 'fade-in' : 'opacity-0'}`}>
+            {isFormSubmitted ? (
+              <div className="bg-white p-8 rounded-2xl soft-shadow">
+                {showSummary ? (
+                  // Gönderilen Bilgiler Özeti
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold text-evora-navy mb-6">
+                      Gönderilen Bilgiler Özeti
+                    </h3>
+                    
+                    <div className="bg-evora-cream/50 rounded-xl p-6 mb-6 text-left">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="font-medium text-evora-charcoal">Ad Soyad:</span>
+                          <span className="text-evora-navy">{formData.name}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-medium text-evora-charcoal">Telefon:</span>
+                          <span className="text-evora-navy">{formData.phone}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-medium text-evora-charcoal">E-posta:</span>
+                          <span className="text-evora-navy">{formData.email}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-medium text-evora-charcoal">Proje Detayları:</span>
+                          <span className="text-evora-navy max-w-xs text-right">
+                            {formData.message || "Belirtilmedi"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-evora-charcoal/70 text-sm">
+                      Bilgileriniz kontrol ediliyor...
+                    </p>
+                  </div>
+                ) : (
+                  // Başarı Mesajı
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold text-evora-navy mb-4">
+                      Formunuz Başarıyla Gönderildi!
+                    </h3>
+                    <p className="text-evora-charcoal/70 mb-6">
+                      Teşekkür ederiz, en kısa sürede size ulaşacağız.
+                    </p>
+                    
+                    <div className="bg-evora-gold/10 rounded-xl p-6 mb-6 text-left">
+                      <h4 className="font-semibold text-evora-navy mb-3">Sonraki Adımlar:</h4>
+                      <ul className="space-y-2 text-sm text-evora-charcoal/70">
+                        <li className="flex items-center">
+                          <div className="w-2 h-2 bg-evora-gold rounded-full mr-3"></div>
+                          24-48 saat içinde size ulaşacağız
+                        </li>
+                        <li className="flex items-center">
+                          <div className="w-2 h-2 bg-evora-gold rounded-full mr-3"></div>
+                          E-posta ve telefon ile bilgilendirme yapılacak
+                        </li>
+                        <li className="flex items-center">
+                          <div className="w-2 h-2 bg-evora-gold rounded-full mr-3"></div>
+                          Özel danışmanınız size atanacak
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-blue-50 rounded-xl p-4 mb-6">
+                      <p className="text-sm text-blue-800">
+                        <strong>İletişim:</strong> Acil durumlar için +90 212 123 45 67
+                      </p>
+                    </div>
+                    
+                    <Button 
+                      onClick={handleNewForm}
+                      variant="outline" 
+                      size="lg" 
+                      className="w-full border-evora-gold text-evora-gold hover:bg-evora-gold hover:text-white transition-colors duration-200"
+                    >
+                      Farklı Projede Yardım Almak İçin Tekrar Formu Doldur
+                    </Button>
+                  </div>
+                )}
+              </div>
+            ) : (
             <div className="bg-white p-8 rounded-2xl soft-shadow">
               <h3 className="font-display text-2xl font-bold text-evora-navy mb-6">
                 Proje Danışmanlığı Formu
@@ -200,6 +320,7 @@ const Contact = () => {
                 </Button>
               </form>
             </div>
+            )}
           </div>
 
           {/* Contact Info */}
