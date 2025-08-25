@@ -158,6 +158,22 @@
   .scale-hover:hover {
     transform: scale(1.05);
   }
+
+  /* Performance optimizations */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--evora-gold));
+    outline-offset: 2px;
+  }
 }
 
 @layer utilities {

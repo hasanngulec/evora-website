@@ -194,6 +194,7 @@ const Contact = () => {
                   variant="premium" 
                   size="lg" 
                   className="w-full"
+                  aria-label="İletişim formunu gönder"
                 >
                   Formu Gönder
                 </Button>

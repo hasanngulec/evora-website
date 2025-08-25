@@ -1,7 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +27,7 @@ const Projects = () => {
       title: "Platinum Residences",
       category: "Lüks Konut Projesi",
       description: "Modern mimari ile tasarlanmış, 120 daireli premium yaşam kompleksi. Panoramik şehir manzarası ve lüks amenitiler.",
-      image: project1,
+      image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Akıllı Ev Sistemi", "Spa & Wellness", "Güvenlik 7/24"]
     },
     {
@@ -38,7 +35,7 @@ const Projects = () => {
       title: "Elite Business Center",
       category: "Ticari Yapı",
       description: "A+ ofis standardında, 25 katlı modern iş merkezi. Teknoloji odaklı tasarım ve sürdürülebilir mimari.",
-      image: project2,
+      image: "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["LEED Sertifikası", "Konferans Salonu", "Otopark"]
     },
     {
@@ -46,7 +43,7 @@ const Projects = () => {
       title: "Garden Villas",
       category: "Villa Projesi",
       description: "Doğayla iç içe, özel bahçeli villa konsepti. Minimalist tasarım ve maksimum konfor.",
-      image: project3,
+      image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Özel Bahçe", "Akıllı Sistem", "Kapalı Havuz"]
     },
     {
@@ -54,7 +51,7 @@ const Projects = () => {
       title: "Sky Tower",
       category: "Rezidans",
       description: "Şehrin en yüksek noktasında, 360° manzaralı ultra lüks rezidans projesi.",
-      image: project1,
+      image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Gökdelende Yaşam", "Concierge Hizmet", "Helipad"]
     },
     {
@@ -62,7 +59,7 @@ const Projects = () => {
       title: "Marina Complex",
       category: "Karma Proje",
       description: "Deniz manzaralı, konut ve ticari alanları birleştiren entegre yaşam projesi.",
-      image: project2,
+      image: "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Marina Erişimi", "Alışveriş Merkezi", "Restoran"]
     },
     {
@@ -70,7 +67,7 @@ const Projects = () => {
       title: "Green Valley Homes",
       category: "Sürdürülebilir Konut",
       description: "Çevre dostu malzemeler ve enerji verimli teknolojilerle tasarlanmış ekolojik konut projesi.",
-      image: project3,
+      image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       features: ["Sıfır Atık", "Güneş Enerjisi", "Yeşil Çatı"]
     }
   ];
@@ -109,6 +106,8 @@ const Projects = () => {
                   src={project.image} 
                   alt={project.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-evora-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-4 left-4">

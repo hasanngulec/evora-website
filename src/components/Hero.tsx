@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-architecture.jpg";
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -14,7 +13,9 @@ const Hero = () => {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')` }}
+        role="img"
+        aria-label="Modern mimari yapı arka plan görseli"
       />
       
       {/* Gradient Overlay */}
