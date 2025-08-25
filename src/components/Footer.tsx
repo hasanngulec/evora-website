@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img
-                src="/src/assets/evoraa-son2.png"
+                src="/evoraa-son2.png"
                 alt="Evora"
                 className="h-12 w-auto"
               />
